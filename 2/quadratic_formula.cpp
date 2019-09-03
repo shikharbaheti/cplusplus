@@ -31,7 +31,7 @@ double d = delta(a, b, c);
   }
   else {
     if (d == 0) { // only one solution
-      cout << "Solution is " << - b / 2a << endl;
+      cout << "Solution is " << - b / 2*a << endl;
     }
     else if (d >= 0) { //two real numbers as solutions
       cout << "Solutions are " << (-b + sqrt(d))/(2*a) << " and " << (-b - sqrt(d))/(2*a) << endl;
