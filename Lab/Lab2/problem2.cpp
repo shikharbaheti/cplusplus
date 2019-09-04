@@ -5,10 +5,10 @@ using namespace std;
 int main(){
 
   float num;
-  float low;
+  float high;
 
   cin >> num;
-  low = num;
+  high = num;
 
 if (num == 0){
   cout << "empty" << endl;
@@ -16,14 +16,14 @@ if (num == 0){
 }
 else {
   while (num !=0) {
-    if (num < low){
-      low = num;
+    if (num > high){
+      high = num;
     }
     cin >> num;
   }
 
   }
 
-cout << "min: " << low << endl;;
+cout << "max: " << high << endl;;
   return 0;
   }
