@@ -5,7 +5,8 @@ using namespace std;
 int main(){
 
   float num;
-  float low;
+  float num_higher;
+  float num_lower;
 
   cin >> num;
   low = num;
