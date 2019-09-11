@@ -1,0 +1,2 @@
+// it contains only declarations
+// 
