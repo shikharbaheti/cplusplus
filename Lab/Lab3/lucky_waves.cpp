@@ -1,44 +1,39 @@
 #include <iostream>
-
 using namespace std;
+
+
 
 int main(){
 
-  float series;
-  int nums;
-  float placeHolder;
-  int length = 1;
-  int lastOne;
-  int lenghtComp = 1;
+  float number1 = 0;
+  float number2 = 0;
+  int size = 0;
+  int tempWave = 1;
   int wave = 1;
 
-  cin >> nums;
-  cin >> series;
+  cin >> size;
+  cin >> number1;
 
-  placeHolder = series;
-
-  if (nums == 1){
-    cout << length;
+  if (size == 1){
+    cout << size;
   } // if ending
 
-
-  else {
-  for (int i = 1; i < nums; i++) {
-    cin >> series;
-      if (series > placeHolder){
-        length++;
-        placeHolder = series;
-        if (length > wave){
-          wave = length;
+else {
+  for (int i=1; i<size; i++){
+    cin >> number2;
+    if (number2>number1){
+        tempWave++;
+        if (tempWave>wave){
+        wave=tempWave;
         }
-      }
-    else {
-      placeHolder = series;
-      if (length > wave){
-        wave = length;
     }
+    else{
+        tempWave=1;
     }
+    number1=number2;
   }
-  cout << wave;
-}
+  cout << endl;
+  cout << wave << endl;
+  return 0;
+ }
 }
