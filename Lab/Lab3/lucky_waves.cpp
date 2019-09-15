@@ -3,8 +3,7 @@ using namespace std;
 
 
 
-int main(){
-
+int main() {
   float number1 = 0;
   float number2 = 0;
   int size = 0;
@@ -14,23 +13,20 @@ int main(){
   cin >> size;
   cin >> number1;
 
-  if (size == 1){
+  if (size == 1) {
     cout << size;
-  } // if ending
-
-else {
-  for (int i=1; i<size; i++){
+  } else {
+  for (int i=1; i < size; i++) {
     cin >> number2;
-    if (number2>number1){
+    if (number2 > number1){
         tempWave++;
-        if (tempWave>wave){
-        wave=tempWave;
+        if (tempWave > wave) {
+        wave = tempWave;
         }
-    }
-    else{
+    } else {
         tempWave=1;
-    }
-    number1=number2;
+      }
+    number1 = number2;
   }
   cout << endl;
   cout << wave << endl;

@@ -1,1 +1,4 @@
-int countDigitOccurrences (int n, int digit);
+#ifndef MY_HEADER
+#define MY_HEADER
+int countDigitOccurrences (int, int);
+#endif
