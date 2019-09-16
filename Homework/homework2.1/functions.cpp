@@ -30,36 +30,26 @@ int countDigitOccurrences(int n, int digit){
   if (one == digit){
     howManyTimes ++;
   }
-  // cout << "Number: " << n << endl;
-  // cout << "One: " << one << endl;
-  // cout << "Number after one: " << oneN << endl;
   ten = oneN % 10;
   tenN = oneN / 10;
-  // cout << "Ten: " << ten << endl;
-  // cout << "Number after ten: " << tenN << endl;
   if (ten == digit && oneN == 0){
   } else if (ten == digit){
     howManyTimes++;
   }
   hundred = tenN % 10;
   hundredN = tenN / 10;
-  // cout << "Hundred: " << hundred << endl;
-  // cout << "Number after hundred: " << hundredN << endl;
   if (hundred == digit && tenN == 0){
   } else if (hundred == digit){
     howManyTimes++;
   }
   thousand = hundredN % 10;
   thousandN = hundredN / 10;
-  // cout << "Thousand: " << thousand << endl;
-  // cout << "Number after thousand: " << thousandN << endl;
   if (thousand == digit && hundredN == 0){
   } else if (thousand == digit){
     howManyTimes++;
   }
-
   tthousand = thousandN;
-  // cout << "Ten Thousand: " << tthousand << endl;
+  
   if (tthousand == digit && thousandN == 0){
   } else if (tthousand == digit){
     howManyTimes++;
