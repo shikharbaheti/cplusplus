@@ -49,7 +49,7 @@ int countDigitOccurrences(int n, int digit){
     howManyTimes++;
   }
   tthousand = thousandN;
-  
+
   if (tthousand == digit && thousandN == 0){
   } else if (tthousand == digit){
     howManyTimes++;
