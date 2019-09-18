@@ -1,0 +1,41 @@
+// function ; inputs ; outputs
+// inputs are comma separated, in the same order as function parameters
+
+// amax testcases
+// amax ; x, len ; expected return value
+amax ; 8 6 7 5 3 0 9 , 7 ; 6 // example testcase
+maximus ; 8 6 7 5 3 0 9 , 7 ; 6 // same testcase, with spell name
+
+
+// asum testcases
+// asum ; x, len ; expected return value
+
+
+
+// axpy testcases
+// axpy ; a, x, y, len ; expected y
+
+
+
+// copy testcases
+// copy ; x, y, len ; expected y
+
+
+
+// dot testcases
+// dot ; x, y, len ; expected return value
+
+
+
+// norm2 testcases
+// norm2 ; x, len ; expected return value
+
+
+
+// scale testcases
+// scale ; a, x, len ; expected x
+
+
+
+// swap testcases
+// swap ; x, y, len ; expected x, expected y
