@@ -42,7 +42,6 @@ void axpy(const double a, const double* x, double* y, const unsigned int len) {
 }
 
 void copy(const double* src, double* dest, const unsigned int len) {
-    
 }
 
 double dot(const double* x, const double* y, const unsigned int len) {
