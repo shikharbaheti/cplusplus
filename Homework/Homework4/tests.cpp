@@ -30,8 +30,8 @@ bool test_amax() {
     }
     
     {
-        string testcase = "amax ; -5 -4 -3 -2 -1 0 1 2, 8 ; 0";
-        double x[] = {-5, -4, -3, -2, -1, 0, 1, 2};
+        string testcase = "amax ; -4 -5 -3 -2 -1 0 1 2, 8 ; 0";
+        double x[] = {-4, -5, -3, -2, -1, 0, 1, 2};
         unsigned int len = 8;
         int expected = 1;
         int actual = amax(x, len);
@@ -43,6 +43,64 @@ bool test_amax() {
         }
     }
 
+    {
+        string testcase = "amax ; 4 6 3 -2 , 4 ; 1";
+        double x[] = {4, 6, 3, -2};
+        unsigned int len = 4;
+        int expected = 1;
+        int actual = amax(x, len);
+        
+        // abuse of &=, only safe because both args are bool
+        pass &= EXPECT_EQ(actual, expected, testcase);
+        if (pass) {
+            cout << "PASS: " << testcase << endl;
+        }
+    }
+
+    {
+        string testcase = "amax ; 0 , 1 ; 0";
+        double x[] = {0};
+        unsigned int len = 1;
+        int expected = 0;
+        int actual = amax(x, len);
+        
+        // abuse of &=, only safe because both args are bool
+        pass &= EXPECT_EQ(actual, expected, testcase);
+        if (pass) {
+            cout << "PASS: " << testcase << endl;
+        }
+    }
+
+    {
+        string testcase = "amax ; 1, 1 ; 0";
+        double x[] = {1};
+        unsigned int len = 1;
+        int expected = 0;
+        int actual = amax(x, len);
+        
+        // abuse of &=, only safe because both args are bool
+        pass &= EXPECT_EQ(actual, expected, testcase);
+        if (pass) {
+            cout << "PASS: " << testcase << endl;
+        }
+    }
+
+    {
+        string testcase = "amax ; , 0 ; -1";
+        double x[] = {};
+        unsigned int len = 0;
+        int expected = -1;
+        int actual = amax(x, len);
+        
+        // abuse of &=, only safe because both args are bool
+        pass &= EXPECT_EQ(actual, expected, testcase);
+        if (pass) {
+            cout << "PASS: " << testcase << endl;
+        }
+    }
+
+
+
     return pass;
 }
 
@@ -50,8 +108,8 @@ bool test_axpy() {
     bool pass = true;
     
     {
-        string testcase = "axpy ; 0 , 1 2 3 , 4 5 6 , 3 ; 5 7 9";
-        double a = 0;
+        string testcase = "axpy ; 1 , 1 2 3 , 4 5 6 , 3 ; 5 7 9";
+        double a = 1;
         double x[] = {1, 2, 3};
         double y[] = {4, 5, 6};
         unsigned int len = 3;
@@ -67,6 +125,27 @@ bool test_axpy() {
             cout << "PASS: " << testcase << endl;
         }
     }
+
+    {
+        string testcase = "axpy ; 2 , 1 -2 3 , 3 2 1 , 3 ; 5 -2 7";
+        double a = 1;
+        double x[] = {1, -2, 3};
+        double y[] = {3, 2, 1};
+        unsigned int len = 3;
+        double expected[] = {5, -2, 7};
+        axpy(a, x, y, len);
+        double* actual = y;
+        
+        // abuse of &=, only safe because both args are bool
+        // note the new 3rd arg is the length of the arrays
+        // the 4th arg is now the message to print on failure
+        pass &= EXPECT_EQ(actual, expected, len, testcase);
+        if (pass) {
+            cout << "PASS: " << testcase << endl;
+        }
+    }
+
+    
     
     return pass;
 }
