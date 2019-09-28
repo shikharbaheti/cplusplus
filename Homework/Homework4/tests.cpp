@@ -85,22 +85,6 @@ bool test_amax() {
         }
     }
 
-    {
-        string testcase = "amax ; , 0 ; -1";
-        double x[] = {};
-        unsigned int len = 0;
-        int expected = -1;
-        int actual = amax(x, len);
-        
-        // abuse of &=, only safe because both args are bool
-        pass &= EXPECT_EQ(actual, expected, testcase);
-        if (pass) {
-            cout << "PASS: " << testcase << endl;
-        }
-    }
-
-
-
     return pass;
 }
 
@@ -145,7 +129,24 @@ bool test_axpy() {
         }
     }
 
-    
+    {
+        string testcase = "axpy ; 2 , 1 -2 3 , 3 2 1 , 3 ; 5 -2 7";
+        double a = 1;
+        double x[] = {1, 2, 3};
+        double y[] = {4, 5, 6};
+        unsigned int len = 3;
+        double expected[] = {5, 7, 9};
+        axpy(a, x, y, len);
+        double* actual = y;
+        
+        // abuse of &=, only safe because both args are bool
+        // note the new 3rd arg is the length of the arrays
+        // the 4th arg is now the message to print on failure
+        pass &= EXPECT_EQ(actual, expected, len, testcase);
+        if (pass) {
+            cout << "PASS: " << testcase << endl;
+        }
+    }
     
     return pass;
 }
