@@ -85,7 +85,7 @@ Scale a vector.
 Input:
 	a : scalar value
 	x : vector (as an array of doubles)
-	len : number of elements in x (dimension)
+	len : number of elements i  n x (dimension)
 Output: None. x is scaled by a: x = a*x;
 */
 void scale(
