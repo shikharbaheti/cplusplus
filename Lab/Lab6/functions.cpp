@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 #include "functions.h"
+#include <ostream>
 using namespace std;
 
 /***************************************************************************
@@ -122,7 +123,7 @@ bool loadImage(const char filename[], Pixel image[MAX_WIDTH][MAX_HEIGHT], int wi
        ifs >> image[i][j].b;   
     }
   }
- 
+
   return true;
 }
 
@@ -137,7 +138,13 @@ bool loadImage(const char filename[], Pixel image[MAX_WIDTH][MAX_HEIGHT], int wi
  // You should write this function. //
 void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
   cout << "Making grayscale image... " << endl;
-  // iterate through 2d image of Pixels and convert them to grayscale
+  for (int i = 0; i < width; i ++){
+    for (int j = 0; i < height; j++){
+      image[i][j].r = round((image[i][j].r + image[i][j].g + image[i][j].b)/3);
+      image[i][j].g = round((image[i][j].r + image[i][j].g + image[i][j].b)/3);
+      image[i][j].b = round((image[i][j].r + image[i][j].g + image[i][j].b)/3);   
+    }
+  }
 }
 
 
@@ -152,6 +159,14 @@ void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
 void sepiaImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
   cout << "Making sepia image... " << endl;
   // iterate through 2d image of Pixels and convert them to sepia
+  for (int i = 0; i < width; i ++){
+    for (int j = 0; i < height; j++){
+      image[i][j].r = round((image[i][j].r * 0.393) + (image[i][j].g * 0.769) + (image[i][j].b * 0.189));
+      image[i][j].g = round((image[i][j].r * 0.349) + (image[i][j].g * 0.686) + (image[i][j].b * 0.168));
+      image[i][j].b = round((image[i][j].r * 0.272) + (image[i][j].g * 0.534) + (image[i][j].b * 0.131));
+      // how do you implement if a value is over 255?  
+    }
+  }
 }
 
 
@@ -174,15 +189,26 @@ void outputImage(const char filename[], const Pixel image[MAX_WIDTH][MAX_HEIGHT]
   // check if input stream opened successfully
   if (!ifs.is_open()) {
     cout << "Error: failed to open input file " << filename << endl;
-    return false;
   }
   
+  ofstream ofs (filename);
   // check if output stream opened successfully
-  
+  if (!ofs.is_open()) {
+    cout << "Error: failed to open output file: " << filename << endl;
+  }
   // output preamble
-  
+  char type[3];
+  ofs << type << " ";
+  ofs << width << " " << height << " ";
   // output pixels
-  
+
+  for (int i = 0; i < width; i ++){
+    for (int j = 0; i < height; j++){
+       ofs << image[i][j].r << " ";
+       ofs << image[i][j].g << " ";
+       ofs << image[i][j].b << " ";   
+    }
+  }
 }
 
 

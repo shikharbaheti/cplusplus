@@ -2,7 +2,7 @@
 #include <fstream>
 #include <cstring>
 #include "provided.h"
-
+using namespace std;
 using std::ifstream;
 
 /***************************************************************************
