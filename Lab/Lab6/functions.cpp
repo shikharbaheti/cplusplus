@@ -117,18 +117,14 @@ bool loadImage(const char filename[], Pixel image[MAX_WIDTH][MAX_HEIGHT], int wi
   // complete this part
 
   for (int i = 0; i < width; i ++){
-    for (int j = 0; i < height; j++){
+    for (int j = 0; j < height; j++){
        ifs >> image[i][j].r;
        ifs >> image[i][j].g;
        ifs >> image[i][j].b;   
     }
   }
-
   return true;
 }
-
-
-
 /*  Function grayscale
  *  image: 2d-array of Pixels (structs)
  *  width: int for the width of the image array
@@ -138,11 +134,20 @@ bool loadImage(const char filename[], Pixel image[MAX_WIDTH][MAX_HEIGHT], int wi
  // You should write this function. //
 void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
   cout << "Making grayscale image... " << endl;
+  int oldRed;
+  int oldGreen;
+  int oldBlue;
+  int totalColor;
+
   for (int i = 0; i < width; i ++){
-    for (int j = 0; i < height; j++){
-      image[i][j].r = round((image[i][j].r + image[i][j].g + image[i][j].b)/3);
-      image[i][j].g = round((image[i][j].r + image[i][j].g + image[i][j].b)/3);
-      image[i][j].b = round((image[i][j].r + image[i][j].g + image[i][j].b)/3);   
+    for (int j = 0; j < height; j++){
+      oldRed = image[i][j].r;
+      oldGreen = image[i][j].g;
+      oldBlue = image[i][j].b;
+
+      // image[i][j].r = round((oldRed + oldGreen + oldBlue)/3);
+      // image[i][j].g = round((oldRed + oldGreen + oldBlue)/3);
+      // image[i][j].b = round((oldRed + oldGreen + oldBlue)/3);  
     }
   }
 }
@@ -159,8 +164,8 @@ void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
 void sepiaImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
   cout << "Making sepia image... " << endl;
   // iterate through 2d image of Pixels and convert them to sepia
-  for (int i = 0; i < width; i ++){
-    for (int j = 0; i < height; j++){
+  for (int i = 0; i < width; i++){
+    for (int j = 0; j < height; j++){
       image[i][j].r = round((image[i][j].r * 0.393) + (image[i][j].g * 0.769) + (image[i][j].b * 0.189));
       image[i][j].g = round((image[i][j].r * 0.349) + (image[i][j].g * 0.686) + (image[i][j].b * 0.168));
       image[i][j].b = round((image[i][j].r * 0.272) + (image[i][j].g * 0.534) + (image[i][j].b * 0.131));
@@ -184,12 +189,12 @@ void outputImage(const char filename[], const Pixel image[MAX_WIDTH][MAX_HEIGHT]
   // declare/define and open output file stream
   cout << "Loading image..." << endl;
   // declare/define and open input file stream
-  ifstream ifs (filename);
+  // ifstream ifs (filename);
   
   // check if input stream opened successfully
-  if (!ifs.is_open()) {
-    cout << "Error: failed to open input file " << filename << endl;
-  }
+  // if (!ifs.is_open()) {
+  //   cout << "Error: failed to open input file " << filename << endl;
+  // }
   
   ofstream ofs (filename);
   // check if output stream opened successfully
@@ -197,8 +202,7 @@ void outputImage(const char filename[], const Pixel image[MAX_WIDTH][MAX_HEIGHT]
     cout << "Error: failed to open output file: " << filename << endl;
   }
   // output preamble
-  char type[3];
-  ofs << type << " ";
+  ofs << "P3" << " ";
   ofs << width << " " << height << " ";
   // output pixels
 
