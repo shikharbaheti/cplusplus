@@ -4,7 +4,7 @@
 #include <cmath>
 #include <limits>
 #include "functions.h"
-#include <ostream>
+
 using namespace std;
 
 /***************************************************************************
@@ -115,16 +115,19 @@ bool loadImage(const char filename[], Pixel image[MAX_WIDTH][MAX_HEIGHT], int wi
 
   // get RGB pixel values
   // complete this part
-
-  for (int i = 0; i < width; i ++){
-    for (int j = 0; j < height; j++){
+  for (int j = 0; j < height; j ++){
+    for (int i = 0; i < width; i++){
        ifs >> image[i][j].r;
        ifs >> image[i][j].g;
        ifs >> image[i][j].b;   
     }
   }
+ 
   return true;
 }
+
+
+
 /*  Function grayscale
  *  image: 2d-array of Pixels (structs)
  *  width: int for the width of the image array
@@ -134,22 +137,22 @@ bool loadImage(const char filename[], Pixel image[MAX_WIDTH][MAX_HEIGHT], int wi
  // You should write this function. //
 void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
   cout << "Making grayscale image... " << endl;
-  int oldRed;
-  int oldGreen;
-  int oldBlue;
-  int totalColor;
+  double oldRed;
+  double oldGreen;
+  double oldBlue;
 
-  for (int i = 0; i < width; i ++){
-    for (int j = 0; j < height; j++){
+  for (int j = 0; j < height; j ++){
+    for (int i = 0; i < width; i++){
       oldRed = image[i][j].r;
       oldGreen = image[i][j].g;
       oldBlue = image[i][j].b;
 
-      // image[i][j].r = round((oldRed + oldGreen + oldBlue)/3);
-      // image[i][j].g = round((oldRed + oldGreen + oldBlue)/3);
-      // image[i][j].b = round((oldRed + oldGreen + oldBlue)/3);  
+      image[i][j].r = round((oldRed + oldGreen + oldBlue)/3);
+      image[i][j].g = round((oldRed + oldGreen + oldBlue)/3);
+      image[i][j].b = round((oldRed + oldGreen + oldBlue)/3);
     }
   }
+  // iterate through 2d image of Pixels and convert them to grayscale
 }
 
 
@@ -164,14 +167,32 @@ void grayscaleImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
 void sepiaImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
   cout << "Making sepia image... " << endl;
   // iterate through 2d image of Pixels and convert them to sepia
-  for (int i = 0; i < width; i++){
-    for (int j = 0; j < height; j++){
-      image[i][j].r = round((image[i][j].r * 0.393) + (image[i][j].g * 0.769) + (image[i][j].b * 0.189));
-      image[i][j].g = round((image[i][j].r * 0.349) + (image[i][j].g * 0.686) + (image[i][j].b * 0.168));
-      image[i][j].b = round((image[i][j].r * 0.272) + (image[i][j].g * 0.534) + (image[i][j].b * 0.131));
-      // how do you implement if a value is over 255?  
+  double oldRed;
+  double oldGreen;
+  double oldBlue;
+
+  for (int j = 0; j < height; j ++){
+    for (int i = 0; i < width; i++){
+      oldRed = image[i][j].r;
+      oldGreen = image[i][j].g;
+      oldBlue = image[i][j].b;
+
+      image[i][j].r = round((oldRed * 0.393) + (oldGreen * 0.769) + (oldBlue * 0.189));
+      image[i][j].g = round((oldRed * 0.349) + (oldGreen * 0.686) + (oldBlue * 0.168));
+      image[i][j].b = round((oldRed * 0.272) + (oldGreen * 0.534) + (oldBlue * 0.131));
+      
+      if (image[i][j].r > 255){
+        image[i][j].r = 255;
+      }
+      if (image[i][j].g > 255){
+        image[i][j].g = 255;
+      }
+      if (image[i][j].b > 255){
+        image[i][j].b = 255;
+      }
     }
   }
+
 }
 
 
@@ -187,32 +208,31 @@ void sepiaImage(Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
 void outputImage(const char filename[], const Pixel image[MAX_WIDTH][MAX_HEIGHT], int width, int height) {
   cout << "Outputting image..." << endl;
   // declare/define and open output file stream
-  cout << "Loading image..." << endl;
-  // declare/define and open input file stream
-  // ifstream ifs (filename);
-  
-  // check if input stream opened successfully
-  // if (!ifs.is_open()) {
-  //   cout << "Error: failed to open input file " << filename << endl;
-  // }
-  
   ofstream ofs (filename);
-  // check if output stream opened successfully
+
   if (!ofs.is_open()) {
     cout << "Error: failed to open output file: " << filename << endl;
   }
-  // output preamble
-  ofs << "P3" << " ";
-  ofs << width << " " << height << " ";
-  // output pixels
 
-  for (int i = 0; i < width; i ++){
-    for (int j = 0; i < height; j++){
+  ofs << "P3" << " " << endl;
+  ofs << width << " " << height << endl;
+  ofs << "255" << endl;
+
+
+
+  // check if output stream opened successfully
+  
+  // output preamble
+  
+  // output pixels
+  for (int j = 0; j < height; j++){
+    for (int i = 0; i < width; i++){
        ofs << image[i][j].r << " ";
        ofs << image[i][j].g << " ";
-       ofs << image[i][j].b << " ";   
+       ofs << image[i][j].b << " ";
     }
   }
+  
 }
 
 
