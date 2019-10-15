@@ -15,7 +15,7 @@ void push(Stack& s, double element) {
     B[s.length] = element;
     s.capacity = s.capacity * 2;
     s.length = s.length + 1;
-    delete []s.A;
+    delete[] s.A;
     s.A = B;
     }
 

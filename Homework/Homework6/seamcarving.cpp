@@ -14,16 +14,31 @@ int main() {
   int targetWidth = 0;
   int targetHeight = 0;
   
-  
-  
-
   cout << "Input filename: ";
   cin >> filename;
   cout << "Input width and height: ";
-  cin >> width >> height;
+  cin >> width;
+  if (!cin.good()){
+    cout << "Error: width is a non-integer value" << endl;
+    return 0;
+  }
+  cin >> height;
+  if (!cin.good()){
+    cout << "Error: height is a non-integer value" << endl;
+    return 0;
+  }
   cout << "Input target width and target height: ";
-  cin >> targetWidth >> targetHeight;
-
+  cin >> targetWidth;
+  if (!cin.good()){
+    cout << "Error: target width is a non-integer value" << endl;
+    return 0;
+  }
+  cin >> targetHeight;
+  if (!cin.good()){
+    cout << "Error: target height is a non-integer value" << endl;
+    return 0;
+  }
+  
   if (width <= 0){
     cout << "Error: width must be greater than 0. You entered " << width << endl;
   }
@@ -42,6 +57,7 @@ int main() {
   else if (targetHeight  > height){
     cout << "Error: target height must be less than height, " << targetHeight  << " is greater than " << height << endl;
   }
+  else {
 
   // target value is a not integer
   
@@ -62,7 +78,6 @@ int main() {
   
     // call last to remove the memory from the heap
     deleteImage(image, originalWidth);
+    }
   }
-  // else 
-  
 }
