@@ -186,4 +186,27 @@ int energy(Pixel** image, int x, int y, int width, int height) {
 
   energyofPixel = xGradient + yGradient;
   return energyofPixel;
+
+  int loadVerticalSeam(Pixel** image, int start_col, int width, int height, int* seam) {
+  return 0;
+}
+
+int loadHorizontalSeam(Pixel** image, int start_row, int width, int height, int* seam) {
+  return 0;
+}
+
+int* findMinVerticalSeam(Pixel** image, int width, int height) {
+  return nullptr;
+}
+
+int* findMinHorizontalSeam(Pixel** image, int width, int height) {
+  return nullptr;
+}
+
+void removeVerticalSeam(Pixel** image, int width, int height, int* verticalSeam) {
+}
+
+*/
+void removeHorizontalSeam(Pixel** image, int width, int height, int* horizontalSeam) {
+}
 }
