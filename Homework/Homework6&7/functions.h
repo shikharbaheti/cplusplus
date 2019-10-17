@@ -25,10 +25,10 @@ int energy(Pixel** image, int x, int y, int width, int height);
 
 // PART 2
 int loadVerticalSeam(Pixel** image, int start_col, int width, int height, int* seam);
-int loadHorizontalSeam(Pixel** image, int start_row, int width, int height, int* seam);
-int* findMinVerticalSeam(Pixel** image, int width, int height);
-int* findMinHorizontalSeam(Pixel** image, int width, int height);
-void removeVerticalSeam(Pixel** image, int width, int height, int* verticalSeam);
-void removeHorizontalSeam(Pixel** image, int width, int height, int* horizontalSeam);
+// int loadHorizontalSeam(Pixel** image, int start_row, int width, int height, int* seam);
+// int* findMinVerticalSeam(Pixel** image, int width, int height);
+// int* findMinHorizontalSeam(Pixel** image, int width, int height);
+// void removeVerticalSeam(Pixel** image, int width, int height, int* verticalSeam);
+// void removeHorizontalSeam(Pixel** image, int width, int height, int* horizontalSeam);
 
 #endif

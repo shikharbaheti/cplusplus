@@ -105,7 +105,7 @@ bool loadImage(string filename, Pixel** image, int width, int height) {
     return false;
   }
   int counter;
-  int expected;
+
   for (int j = 0; j < height; j ++){
     for (int i = 0; i < width; i++){
        ifs >> image[i][j].r;
@@ -186,27 +186,51 @@ int energy(Pixel** image, int x, int y, int width, int height) {
 
   energyofPixel = xGradient + yGradient;
   return energyofPixel;
+}
 
   int loadVerticalSeam(Pixel** image, int start_col, int width, int height, int* seam) {
+    int energyOfThisPixel; //energy level of the current pixel
+    int bottom; // energy level of the pixel below
+    int left; // energy level of pixel on the bottom left
+    int right; //energy level of pixel on the bottom right
+    int totalEnergy = 0;
+    /*
+      The issue with this function below is that it is in a for loop and I am advancing the array through i and j whereas if I get a higher 
+      energy level, it is gonna cause issues because we'd have to advance the rows and columns. 
+      Don't know how to solve that. 
+   */
+    for (int j = 0; j < height; j++) {
+      for (int i = start_col; i < width; i++) {
+        energyOfThisPixel = energy(image, i, j, width, height); // how do you call x and y??
+        bottom = energy(image, i, (j+1), width, height);
+        left = energy(image, (i+1), (j+1), width, height);
+        right = energy(image, (i-1), (j+1), width, height);
+        if (energyOfThisPixel > bottom){
+          // do what if that happens? add it to the seam? add what though
+        }
+      }
+  } 
   return 0;
 }
 
 int loadHorizontalSeam(Pixel** image, int start_row, int width, int height, int* seam) {
+  // believe same as above haha but changed rows and colums orientation
   return 0;
 }
 
 int* findMinVerticalSeam(Pixel** image, int width, int height) {
+  // okay how is this different from the loadHorizontalSeam?
+  // what are we doing in that that is different from this? 
+  
   return nullptr;
 }
 
-int* findMinHorizontalSeam(Pixel** image, int width, int height) {
-  return nullptr;
-}
+// int* findMinHorizontalSeam(Pixel** image, int width, int height) {
+//   return nullptr;
+// }
 
-void removeVerticalSeam(Pixel** image, int width, int height, int* verticalSeam) {
-}
+// void removeVerticalSeam(Pixel** image, int width, int height, int* verticalSeam) {
+// }
 
-*/
-void removeHorizontalSeam(Pixel** image, int width, int height, int* horizontalSeam) {
-}
-}
+// void removeHorizontalSeam(Pixel** image, int width, int height, int* horizontalSeam) {
+// }
