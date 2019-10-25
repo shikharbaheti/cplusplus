@@ -141,17 +141,37 @@ int countNeighborMines(struct minePosition** mineMatrix, int nRows, int nCols, i
 
 int openPosition(struct minePosition** mineMatrix, int nRows, int nCols, int row, int col)
 {
-  if (mineMatrix[row][col].neighborMines == -1){
-
-    cout << "BOOOOOOOOOOOOOOOOOOOOOOM" << endl;
-    return MINE;
+  // cout << row << " " << col << endl;
+  if (mineMatrix[row][col].open){
+    return 0;
   }
-  else if (mineMatrix[row][col].open == true){
-       countNeighborMines(mineMatrix, nRows, nCols, row, col);
-    if (countNeighborMines(mineMatrix, nRows, nCols, row, col) == 0){
-      openPosition(mineMatrix, nRows, nCols, row, col);
+  if (mineMatrix[row][col].neighborMines == -1){
+      mineMatrix[row][col].open = true;
+      cout << "BOOOOOOOOOOOOOOOOOOOOOOM" << endl;
+      return MINE;
+  }
+  else {
+      mineMatrix[row][col].open = true;
+      int numNeigh = countNeighborMines(mineMatrix, nRows, nCols, row, col);
+    // if (numNeigh > 0){
+    //   return 0;
+    // }
+    if (numNeigh != 0){
+    return countNeighborMines(mineMatrix, nRows, nCols, row, col);
+    }
+    if (numNeigh == 0) {
+       for (int i = -1; i <= 1; i++) { //rows (x)
+        for (int j = -1; j <= 1; j++) { //colums (y)
+          if ((row + i >= 0) && (row + i < nRows) && (col + j >= 0) && (col + j < nCols)){
+              int positionX = row + i;
+              int positionY = col + j;
+              openPosition(mineMatrix, nRows, nCols, positionX, positionY);
+
+          }
+        }
     }
   }
+}
   return 0;
 }
   
