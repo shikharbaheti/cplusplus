@@ -25,37 +25,67 @@ char max(char A, char B){
 
 int* max(int* array1, int A, int* array2, int B){
     if (A > B) {
-        int *biggerArray = new int[A];
+        int *biggerA = new int[A];
         for (int i = 0; i < A; i++) {
-            biggerArray[i] = array1[i];
+            biggerA[i] = array1[i]; 
         }
-        for (int i = 0; i < A; i++){
-            if (array1[i] > array2[i]){
-                biggerArray[i] = array1[i];
+        for (int i = 0; i < A; i++) {
+            if (array1[i] < array2[i]){
+                biggerA[i] = array2[i];
             }
             else {
-                biggerArray[i] = array2[i];
-                }
+                biggerA[i] = array1[i];
             }
-            delete [] biggerArray;
         }
+        //delete [] biggerA;
+        return biggerA;
+    }
     else {
-        int *biggerArray = new int[B];
+        int *biggerB = new int[B];
         for (int i = 0; i < B; i++){
-            biggerArray[i] = array2[i];
+            biggerB[i] = array2[i];
         }
         for (int i = 0; i < B; i++){
-            if (array1[i] > array2[i]){
-                biggerArray[i] = array1[i];
+            if (array1[i] < array2[i]){
+                biggerB[i] = array2[i];
             }
             else {
-                biggerArray[i] = array2[i];
-                }
+                biggerB[i] = array1[i];
             }
-        delete [] biggerArray;
+        }
+        //delete [] biggerB;
+        return biggerB;
     }
 }
 
-char* max(char*, char*) {
-    
+void lowerB(char *stringB){
+    for (int i = 0; stringB[i] != '\0'; ++i) {
+        if ((int) stringB[i] < 97){
+            stringB[i] = (char) ((int) stringB[i] + 32);
+        }
+    }
+}
+
+void lowerA(char *stringA){
+    for (int i = 0; stringA[i] != '\0'; ++i) {
+        if ((int) stringA[i] < 97){
+            stringA[i] = (char) ((int) stringA[i] + 32);
+        }
+    }
+}
+
+
+char* max(char* stringA, char* stringB) {
+    lowerA(stringA);
+    lowerB(stringB);
+    int index = 0;
+    while (stringA[index] == stringB[index] && stringA[index] != '\0' && stringB[index] != '\0'){
+        index++;
+    } 
+    if (stringA[index] > stringB[index]) {
+        return stringB;
+    }
+    else {
+        return stringA;
+    }
 }
