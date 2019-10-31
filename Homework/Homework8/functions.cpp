@@ -19,44 +19,37 @@ using namespace std;
  * Functionality:
  *     Processes the string in order to find out hashtags and identify if it is Retweet
  */
-void readTweet(string line, bool& isRetweet, int& nb_htags) {
-        //, string*& array_of_htags
+void readTweet(string line, bool& isRetweet, int& nb_htags, string*& array_of_htags) {
+        //TODO
+        // COUNT HOW MANY RETWEETS => Different cases of RTs
+        //HOW TO AVOID CSV FILES
+
+
         for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
             if (line.at (i) == ',' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
                 isRetweet = true;
             }
         }
-        for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
-            if (line.at (i) == '\'' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
-                isRetweet = true;
-            }
-        }
-        for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
-            if (line.at (i) == '\"' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
-                isRetweet = true;
-            }
-        }
-
-
-        if (isRetweet == true){
-            cout << "Yes, retweet" << endl;
-        }
-
+        // for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
+        //     if (line.at (i) == '\'' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
+        //         isRetweet = true;
+        //     }
+        // }
+        // for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
+        //     if (line.at (i) == '\"' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
+        //         isRetweet = true;
+        //     }
+        // }
         string hashTag; 
-
         for (int i = 0; i < line.size(); i ++){ // find hashtag
             if (line.at(i) == '#'){
                 for (int j = i; j < line.size() && !isspace(line.at(j)); j++){
                     hashTag = hashTag + line.at(j);
                 }
+                nb_htags++;
             }
         }
-
-        cout << hashTag << endl;
-
-    // make the array of hashtags
-        // go into main >> 
-
+        array_of_htags[nb_htags] = hashTag;
 }
 
 /* insertHashtag

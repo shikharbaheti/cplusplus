@@ -31,8 +31,8 @@ struct OrderedHashtagList {
 };
 
 void readTweet(std::string line, bool& isRetweet,
-	       int& nb_htags);
-	//, std::string*& array_of_htags
+	       int& nb_htags, std::string*& array_of_htags);
+
 bool insertHashtag(std::string ht, OrderedHashtagList& hashlist);
 
 void showMostPopularHashtags(OrderedHashtagList hashlist, int k);

@@ -38,9 +38,13 @@ int getOption() {
 
 int main() {  
     printMenu();
-    bool isRetweet;
-    int nb_htags;
-    string array_of_htags;
+    bool isRetweet; //Boolean to check if the line is Retweet or Not
+    int nb_htags = 0; // Number of Hashtags in the line
+    int numOfHashTags = 0;
+    int numOfTweets = 0; //Number of TOTAL Tweets in the whole file
+    int numOfRetweets = 0; // Number of TOTAL Retweets
+    int arrayOfHtagsCapacity = 100001;
+    string* array_of_htags = new string[arrayOfHtagsCapacity];
     string fileName;
     int numofReteweet = 0;
     if (getOption() == 1){
@@ -49,13 +53,23 @@ int main() {
         ifstream fin;
         fin.open(fileName); //opening the file
         if (!fin){
-            cout << "Please enter a valid file, idiot" << endl; // error in opening the file
+            cout << "Please enter a valid file" << endl; // error in opening the file
             cin >> fileName;
         }
         string line;
         while(getline(fin, line)){
-            readTweet(line, isRetweet, nb_htags);
+            readTweet(line, isRetweet, nb_htags, array_of_htags);
+
+            if (line.at (0) == '2' && line.at(1) == '0' && line.at(2) == '1' && line.at(3) == '9'){ //CHECK IF LEGIT TWEET
+                numOfTweets++;
+            }
+
         }
+        for (int i = 0; i < 100; i++){
+            cout << array_of_htags[i] << endl;
+        }
+        numOfHashTags = nb_htags;
+        cout << "Tweets: " << numOfTweets << ", Retweets: " << numOfRetweets << ", Hashtags: " << numOfHashTags << endl;
         return 0;
     }
     if (getOption() == 2){
@@ -70,6 +84,9 @@ int main() {
     else {
         cout << "Please select a valid option" << endl;
     }
+
+    delete [] array_of_htags;
+    array_of_htags = nullptr;
 }
    
     
