@@ -20,11 +20,11 @@ using namespace std;
  *     Processes the string in order to find out hashtags and identify if it is Retweet
  */
 void readTweet(string line, bool& isRetweet, int& nb_htags, string*& array_of_htags){
-        for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
-            if (line.at (i) == ',' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
-                isRetweet = true;
-            }
-        }
+        // for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
+        //     if (line.at (i) == ',' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
+        //         isRetweet = true;
+        //     }
+        // }
         // }
         // for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
         //     if (line.at (i) == '\'' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
@@ -41,8 +41,9 @@ void readTweet(string line, bool& isRetweet, int& nb_htags, string*& array_of_ht
 
         for (int i = 0; i < line.size(); i ++){ // find hashtag
             if (line.at(i) == '#'){ // WHAT IF WE HAVE IF MORE THAN ONE HASHTAG IN THIS TWEET
-                for (int j = i; j < line.size() &&  !isspace(line.at(j)); j++){
+                for (int j = i; j < line.size() && !isspace(line.at(j)); j++){
                     hashTag = hashTag + line.at(j);
+                    i = j;
                 }
                 array_of_htags[nb_htags] = hashTag;
                 nb_htags++;

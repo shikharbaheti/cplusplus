@@ -57,13 +57,16 @@ int main()
     ifstream fin;
     string line;
 
-do {
+    cout << "Got to this part - 1" << endl;
 
+do {
+    cout << "Got to this part - 2" << endl;
     printMenu();
     option = getOption();
-
+    cout << "Got to this part - 3" << endl;
     switch (option) {
         case 1:
+                cout << "Got to this part - 4" << endl;
                 cout << "Enter filename: " << endl; //ask the user to input a filename
                 cin >> fileName; // getting the filename from the user
                 fin.open(fileName); //opening the file
@@ -71,30 +74,33 @@ do {
                 // cout << "Please enter a valid file, idiot" << endl; // error in opening the file
                 // cin >> fileName;
                 // }
-
+                cout << "Got to this part - 5" << endl;
                 while(getline(fin, line)) { //read each line
                 readTweet(line, isRetweet, nb_htags, array_of_htags);
-                    if (isRetweet == true){
-                        numberOfRetweets++;
-                    }
+                    // if (isRetweet == true){
+                    //     numberOfRetweets++;
+                    // }
                 }
+                cout << "Got to this part - 6" << endl;
                 for (int i = 0; i < nb_htags; i++){ //convert to lowercase, all of them.
                     for (int j = 0; j < sizeof(array_of_htags[i]); j++){
                         array_of_htags[i][j] = tolower(array_of_htags[i][j]);
                     }
                 }
-
+                cout << "Got to this part - 7" << endl;
                 for (int i = 0; i < nb_htags; i++){
                 insertHashtag(array_of_htags[i], hashlist);
                 }
-
+                cout << "Got to this part - 8" << endl;
             break;
         case 2:
+            cout << "Got to this part - 9" << endl;
             cout << 
             "Tweets: " << numberOfTweets << ", " <<
             "Retweets: " << numberOfRetweets << ", " <<
             "Hashtags: " << numberOfHastags << endl;
             break;
+            cout << "Got to this part - 10" << endl;
         case 3:
             showMostPopularHashtags(hashlist, k);
             break;    
