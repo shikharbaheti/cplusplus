@@ -37,10 +37,17 @@ int getOption() {
 }
 
 int main() {  
+    bool cont = true;
     printMenu();
     bool isRetweet;
-    int nb_htags;
-    string array_of_htags;
+    OrderedHashtagList hashlist;
+    int numberOfTweets = 0; // Total number of tweets
+    int numberOfRetweets = 0; //Total number of Retweets
+    int numberOfHastags = 0; //Total number of Hashtags
+    int arrayHTagsCapacity = 100101;
+    int nb_htags = 0;
+    int k = 10;
+    string* array_of_htags = new string [arrayHTagsCapacity];
     string fileName;
     int numofReteweet = 0;
     if (getOption() == 1){
@@ -48,14 +55,36 @@ int main() {
         cin >> fileName; // getting the filename from the user
         ifstream fin;
         fin.open(fileName); //opening the file
-        if (!fin){
+        if (!fin) {
             cout << "Please enter a valid file, idiot" << endl; // error in opening the file
             cin >> fileName;
         }
         string line;
         while(getline(fin, line)){
-            readTweet(line, isRetweet, nb_htags);
+                readTweet(line, isRetweet, nb_htags, array_of_htags);
         }
+
+        //CONVERT ALL TO LOWER
+        for (int i = 0; i < nb_htags; i++){
+            for (int j = 0; j < sizeof(array_of_htags[i]); j++){
+                array_of_htags[i][j] = tolower(array_of_htags[i][j]);
+            }
+        }
+
+        for (int i = 0; i < nb_htags; i++){
+            cout << i << ": " << array_of_htags[i] << endl;
+        }
+
+        cout << "___ END OF ARRAY OF HTAGS __ " << endl;
+
+        for (int i = 0; i < nb_htags; i++){
+            insertHashtag(array_of_htags[i], hashlist);
+        }
+
+        for (int i = 0; i < hashlist.size; i++){
+            cout << hashlist.list[i].name << " " << hashlist.list[i].counter << endl;
+        }
+
         return 0;
     }
     if (getOption() == 2){
@@ -69,7 +98,7 @@ int main() {
     }
     else {
         cout << "Please select a valid option" << endl;
-    }
+        }
 }
    
     

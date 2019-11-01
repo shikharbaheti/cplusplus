@@ -19,46 +19,36 @@ using namespace std;
  * Functionality:
  *     Processes the string in order to find out hashtags and identify if it is Retweet
  */
-void readTweet(string line, bool& isRetweet, int& nb_htags) {
-        //, string*& array_of_htags
+void readTweet(string line, bool& isRetweet, int& nb_htags, string*& array_of_htags){
         for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
             if (line.at (i) == ',' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
                 isRetweet = true;
             }
         }
-        for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
-            if (line.at (i) == '\'' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
-                isRetweet = true;
-            }
-        }
-        for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
-            if (line.at (i) == '\"' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
-                isRetweet = true;
-            }
-        }
-
-
-        if (isRetweet == true){
-            cout << "Yes, retweet" << endl;
-        }
+        // }
+        // for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
+        //     if (line.at (i) == '\'' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
+        //         isRetweet = true;
+        //     }
+        // }
+        // for (int i = 0; i < line.size(); i++) { // CHECK IF RETWEET
+        //     if (line.at (i) == '\"' && line.at(i+1) == 'R' && line.at(i+2) == 'T'){
+        //         isRetweet = true;
+        //     }
+        // }
 
         string hashTag; 
 
         for (int i = 0; i < line.size(); i ++){ // find hashtag
-            if (line.at(i) == '#'){
-                for (int j = i; j < line.size() && !isspace(line.at(j)); j++){
+            if (line.at(i) == '#'){ // WHAT IF WE HAVE IF MORE THAN ONE HASHTAG IN THIS TWEET
+                for (int j = i; j < line.size() &&  !isspace(line.at(j)); j++){
                     hashTag = hashTag + line.at(j);
                 }
+                array_of_htags[nb_htags] = hashTag;
+                nb_htags++;
             }
         }
-
-        cout << hashTag << endl;
-
-    // make the array of hashtags
-        // go into main >> 
-
-}
-
+    }
 /* insertHashtag
  * Parameters:
  *      ht: string
@@ -71,7 +61,31 @@ void readTweet(string line, bool& isRetweet, int& nb_htags) {
  */
 
 bool insertHashtag(string ht, OrderedHashtagList& hashlist) {
-    cout << "To be implemented by the student" << endl;
+    if (hashlist.size == hashlist.capacity){ // RESIZE
+        hashlist.capacity = hashlist.capacity * 2;
+        Hashtag* test2 = new Hashtag[hashlist.capacity];
+        for (int i = 0; i < hashlist.size; i++){
+            test2[i] = hashlist.list[i];
+        }
+        delete [] hashlist.list;
+        hashlist.list = test2;
+    }
+    for (int i = 0; i < hashlist.size; i++){
+        if (ht == hashlist.list[i].name){
+            hashlist.list[i].counter++;
+            int index = i;
+            while (index > 0 && hashlist.list[index].counter > hashlist.list[index - 1].counter){
+                Hashtag temp = hashlist.list[index];
+                hashlist.list[index] = hashlist.list[index - 1];
+                hashlist.list[index - 1] = temp;
+                index--;
+            }
+            return true;
+        }
+    }
+    hashlist.list[hashlist.size].name = ht;
+    hashlist.list[hashlist.size].counter = 1;
+    hashlist.size++;
     return true;
 }
 
@@ -85,7 +99,9 @@ bool insertHashtag(string ht, OrderedHashtagList& hashlist) {
  *      See prompt for formatting details.
  */
 void showMostPopularHashtags(OrderedHashtagList hashlist, int k) {
-    cout << "To be implemented by the student" << endl;
+    
+  
+
 }
 
 
