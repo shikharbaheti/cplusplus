@@ -36,69 +36,75 @@ int getOption() {
     return option;
 }
 
-int main() {  
-    bool cont = true;
-    printMenu();
-    bool isRetweet;
+// void movingForard(){
+//     printMenu;
+//     getOption();
+// }
+
+int main()
+{
+    int option = 0;
+    bool isRetweet = false;
     OrderedHashtagList hashlist;
     int numberOfTweets = 0; // Total number of tweets
     int numberOfRetweets = 0; //Total number of Retweets
     int numberOfHastags = 0; //Total number of Hashtags
-    int arrayHTagsCapacity = 100101;
+    int arrayHTagsCapacity = 10000;
     int nb_htags = 0;
     int k = 10;
     string* array_of_htags = new string [arrayHTagsCapacity];
     string fileName;
-    int numofReteweet = 0;
-    if (getOption() == 1){
-        cout << "Enter filename: " << endl; //ask the user to input a filename
-        cin >> fileName; // getting the filename from the user
-        ifstream fin;
-        fin.open(fileName); //opening the file
-        if (!fin) {
-            cout << "Please enter a valid file, idiot" << endl; // error in opening the file
-            cin >> fileName;
-        }
-        string line;
-        while(getline(fin, line)){
+    ifstream fin;
+    string line;
+
+do {
+
+    printMenu();
+    option = getOption();
+
+    switch (option) {
+        case 1:
+                cout << "Enter filename: " << endl; //ask the user to input a filename
+                cin >> fileName; // getting the filename from the user
+                fin.open(fileName); //opening the file
+                // if (!fin) {
+                // cout << "Please enter a valid file, idiot" << endl; // error in opening the file
+                // cin >> fileName;
+                // }
+
+                while(getline(fin, line)) { //read each line
                 readTweet(line, isRetweet, nb_htags, array_of_htags);
+                    if (isRetweet == true){
+                        numberOfRetweets++;
+                    }
+                }
+                for (int i = 0; i < nb_htags; i++){ //convert to lowercase, all of them.
+                    for (int j = 0; j < sizeof(array_of_htags[i]); j++){
+                        array_of_htags[i][j] = tolower(array_of_htags[i][j]);
+                    }
+                }
+
+                for (int i = 0; i < nb_htags; i++){
+                insertHashtag(array_of_htags[i], hashlist);
+                }
+
+            break;
+        case 2:
+            cout << 
+            "Tweets: " << numberOfTweets << ", " <<
+            "Retweets: " << numberOfRetweets << ", " <<
+            "Hashtags: " << numberOfHastags << endl;
+            break;
+        case 3:
+            showMostPopularHashtags(hashlist, k);
+            break;    
+        case 9:
+            break;
+        default:
+            cout << "Please select a valid option" << endl;
         }
 
-        //CONVERT ALL TO LOWER
-        for (int i = 0; i < nb_htags; i++){
-            for (int j = 0; j < sizeof(array_of_htags[i]); j++){
-                array_of_htags[i][j] = tolower(array_of_htags[i][j]);
-            }
-        }
+    } while (option != 9);
 
-        for (int i = 0; i < nb_htags; i++){
-            cout << i << ": " << array_of_htags[i] << endl;
-        }
-
-        cout << "___ END OF ARRAY OF HTAGS __ " << endl;
-
-        for (int i = 0; i < nb_htags; i++){
-            insertHashtag(array_of_htags[i], hashlist);
-        }
-
-        for (int i = 0; i < hashlist.size; i++){
-            cout << hashlist.list[i].name << " " << hashlist.list[i].counter << endl;
-        }
-
-        return 0;
-    }
-    if (getOption() == 2){
-        cout << "Selected 2" << endl;
-    }
-    if (getOption() == 3){
-        cout << "Selected 3" << endl;
-    }
-    if (getOption() == 9){
-        exit(-1); //TODO How do you quit out?? 
-    }
-    else {
-        cout << "Please select a valid option" << endl;
-        }
 }
-   
-    
+

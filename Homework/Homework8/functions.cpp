@@ -100,8 +100,10 @@ bool insertHashtag(string ht, OrderedHashtagList& hashlist) {
  */
 void showMostPopularHashtags(OrderedHashtagList hashlist, int k) {
     
+    for (int i = 0; i < k && i < hashlist.size; i++){
+        cout << "Tag " << hashlist.list[i].name << " - " << hashlist.list[i].counter << " occurrence(s)" << endl;
+    }
   
-
 }
 
 
