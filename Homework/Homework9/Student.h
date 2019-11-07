@@ -10,11 +10,28 @@ class Student {
   std::vector<std::string> course_ids;
   
 public:
-  Student(std::string student_id, std::string name);
-  std::string get_id();
-  std::string get_name();
+  Student(std::string student_id, std::string student_name){
+    id = student_id;
+    name = student_name;
+  };
+  std::string get_id(){
+    return id;
+  };
+  std::string get_name(){
+    return name;
+  };
   void addCourse(std::string course_id);
   void listCourses();
 };
 
 #endif
+
+
+// class Triangle{
+//   int size;
+//   int area;
+//   Triangle(int number, int number2){
+//     size = number;
+//     area = number2;
+//   }
+// }

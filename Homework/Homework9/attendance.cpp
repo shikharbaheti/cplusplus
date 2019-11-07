@@ -35,28 +35,28 @@ void processLoadStudents(School& school) {
   school.addStudents(filename);
 }
 
-void processLoadAttendance(School& school) {
-  string filename;
-  cout << "Please enter filename: ";
-  cin >> filename;
-  school.addAttendanceData(filename);
-}
+// void processLoadAttendance(School& school) {
+//   string filename;
+//   cout << "Please enter filename: ";
+//   cin >> filename;
+//   school.addAttendanceData(filename);
+// }
 
-void processOutputAttendanceStudent(School& school) {
-  string studentID, courseID;
-  cout << "Please enter student UIN: ";
-  cin >> studentID;
-  cout << "Please enter course id: ";
-  cin >> courseID;
-  school.outputStudentAttendance(studentID, courseID);
-}
+// void processOutputAttendanceStudent(School& school) {
+//   string studentID, courseID;
+//   cout << "Please enter student UIN: ";
+//   cin >> studentID;
+//   cout << "Please enter course id: ";
+//   cin >> courseID;
+//   school.outputStudentAttendance(studentID, courseID);
+// }
 
-void processOutputAttendanceCourse(School& school) {
-  string courseID;
-  cout << "Please enter course id: ";
-  cin >> courseID;
-  school.outputCourseAttendance(courseID);
-}
+// void processOutputAttendanceCourse(School& school) {
+//   string courseID;
+//   cout << "Please enter course id: ";
+//   cin >> courseID;
+//   school.outputCourseAttendance(courseID);
+// }
 
 int main() {   
   School school;
@@ -68,9 +68,9 @@ int main() {
     switch (tolower(choice)) {
       case '1': processLoadCourses(school); break;
       case '2': processLoadStudents(school); break;
-      case '3': processLoadAttendance(school); break;
-      case '4': processOutputAttendanceStudent(school); break;
-      case '5': processOutputAttendanceCourse(school); break;
+      // case '3': processLoadAttendance(school); break;
+      // case '4': processOutputAttendanceStudent(school); break;
+      // case '5': processOutputAttendanceCourse(school); break;
       case '6': school.listCourses(); break;
       case '7': school.listStudents(); break;
       case 'q': break; // do nothing

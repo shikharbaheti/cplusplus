@@ -7,11 +7,9 @@ class StackDouble {
     int length = 0;
   
 public:
-  void push(StackDouble& s, double element);
-  double pop(StackDouble& s);
+  void push(double element);
+  double pop();
 
 };
-
-StackDouble::
 
 #endif

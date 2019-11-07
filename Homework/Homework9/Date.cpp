@@ -15,7 +15,7 @@ Date::Date(int hour, int min, int sec)
 
 string Date::getDate() {
   stringstream ss;
-  ss << month << "/" << day << "/" << year << " ";
+  ss << year << "-" << month << "-" << day << " ";
   ss << setw(2) << setfill('0') << hour << ":"; 
   ss << setw(2) << setfill('0') << min << ":";
   ss << setw(2) << setfill('0') << sec;
@@ -54,6 +54,5 @@ bool Date::operator>=(Date d) {
   else if (this->sec == d.sec) {
     return true;
   }
-
   return false;
 }

@@ -2,33 +2,33 @@
 #include <cmath>
 #include "StackDouble.h"
 
-void StackDouble::push(StackDouble& s, double element) {
-    if (s.length == s.capacity) { // check if Array is full
+void StackDouble::push(double element) {
+    if (length == capacity) { // check if Array is full
 
-    double* B = new double[s.capacity * 2];
-    for (int i = 0; i < s.capacity; i++) {
-    B[i] = s.A[i];
+    double* B = new double[capacity * 2];
+    for (int i = 0; i < capacity; i++) {
+    B[i] = A[i];
     }
 
-    B[s.length] = element;
-    s.capacity = s.capacity * 2;
-    s.length = s.length + 1;
-    delete[] s.A;
-    s.A = B;
+    B[length] = element;
+    capacity = capacity * 2;
+    length = length + 1;
+    delete[] A;
+    A = B;
     }
 
     else {
-        s.A[s.length] = element; 
-        s.length = s.length + 1;
+        A[length] = element; 
+        length = length + 1;
     }
 }
 
-double StackDouble::pop(StackDouble& s){
-    if (s.length == 0){
+double StackDouble::pop(){
+    if (length == 0){
         return NAN;
     }
     else {
-        s.length = s.length - 1;
-        return s.A[s.length];
+        length = length - 1;
+        return A[length];
     }
 }
