@@ -48,6 +48,10 @@ void School::addCourses(string filename) {
   while (!ifs.eof()) {
     string line;
     getline(ifs, line);
+      if (line.empty()){
+
+      }
+    else {
     istringstream ss(line);
     string ID;
     getline(ss, ID, ',');
@@ -63,23 +67,21 @@ void School::addCourses(string filename) {
     getline(ss, title);
     Date startTime(stoi(startHour), stoi(startMinute), 0);
     Date endTime(stoi(endHour), stoi(endMinute), 0);
-    cout << "ID is: " << ID << ", star time is: " << startHour << ":" << startMinute << ", end time is: " << endHour << ":" << endMinute << ", and title is: " << title << endl;
-    if (!ss.fail()) {
-      courses.push_back(Course(ID, title, startTime, endTime));
-    }
-    else {
-      cout << "Failing right here." << endl;
+      if (!ss.fail()) {
+        courses.push_back(Course(ID, title, startTime, endTime));
+      }
     }
   }
 }
 
 void School::listCourses(){
   if (courses.size() == 0){
-    cout << "No courses" << endl;
+    cout << "No Courses" << endl;
   }
   else {
-      for (int i = 0; i < courses.size(); i++){
-      cout << courses[i].getID() << "," << courses[i].getStartTime().getHour() << ":" << courses[i].getStartTime().getMin() << "," << courses[i].getEndTime().getHour() << ":" << courses[i].getEndTime().getMin() << "," << courses[i].getTitle() << courses[i].getStartTime().getHour() << endl;
+      //cout << courses[0].getID() << endl;
+        for (int i = 0; i < courses.size(); i++){
+          cout << courses[i].getID() << "," << setw(2) << setfill('0') <<  courses[i].getStartTime().getHour() << ":" << setw(2) << setfill('0') << courses[i].getStartTime().getMin() << "," << setw(2) << setfill('0') << courses[i].getEndTime().getHour() << ":" << setw(2) << setfill('0') << courses[i].getEndTime().getMin() << "," << courses[i].getTitle() << endl;
       }
   }
 }
@@ -91,16 +93,32 @@ void School::listCourses(){
     return;
   }
   while (!ifs.eof()) {
+    while (!ifs.eof()) {
     string line;
     getline(ifs, line);
-    istringstream ss(line);
-    Date::getDate;
-    cout << line;
-   //cout << "Time is: " << time << ", courseID is: " << courseID << ", and studentID is : " << studentID << endl;
+      if (line.empty()){
 
-    // if (!ss.fail()) {
-    //   attendance.push_back(Student(uin, name));
-    // }
+      }
+    else {
+    istringstream ss(line);
+    string year;
+    getline(ss, year, '-');
+    string month;
+    getline(ss, month, '-');
+    string day;
+    getline(ss, day, ' ');
+    string startHour;
+    getline(ss, startHour, ':');
+    string endMinute;
+    getline(ss, endMinute, ',');
+    string title;
+    getline(ss, title);
+    Date startTime(stoi(startHour), stoi(startMinute), 0);
+    Date endTime(stoi(endHour), stoi(endMinute), 0);
+      if (!ss.fail()) {
+        courses.push_back(Course(ID, title, startTime, endTime));
+      }
+    }
   }
 }
 

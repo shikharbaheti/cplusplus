@@ -10,10 +10,17 @@ class AttendanceRecord {
   Date time;
 
 public:
-  AttendanceRecord(std::string course_id, std::string student_id, Date time);
-  std::string getCourseID();
-  std::string getStudentID();
-  Date getDate();
+  AttendanceRecord(std::string course_id, std::string student_id, Date time) :
+  course_id(course_id), student_id(student_id), time(time) {}
+  std::string getCourseID(){
+    return course_id;
+  };
+  std::string getStudentID(){
+    return student_id;
+  };
+  Date getDate(){
+    return time;
+  };
 };
 
 #endif
