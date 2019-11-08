@@ -23,10 +23,7 @@ public:
   std::string getTitle(){
     return title;
   };
-  Date getStartTime(){ //how do you return this??
-    // int startHour;
-    // int startMinute;
-    // int startTime = Date::getHour(); 
+  Date getStartTime(){
     return startTime;
   };
   Date getEndTime(){

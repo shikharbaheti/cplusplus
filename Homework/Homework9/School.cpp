@@ -63,7 +63,7 @@ void School::addCourses(string filename) {
     getline(ss, title);
     Date startTime(stoi(startHour), stoi(startMinute), 0);
     Date endTime(stoi(endHour), stoi(endMinute), 0);
-    // cout << "ID is: " << ID << ", star time is: " << startHour << ":" << startMinute << ", end time is: " << endHour << ":" << endMinute << ", and title is: " << title << endl;
+    cout << "ID is: " << ID << ", star time is: " << startHour << ":" << startMinute << ", end time is: " << endHour << ":" << endMinute << ", and title is: " << title << endl;
     if (!ss.fail()) {
       courses.push_back(Course(ID, title, startTime, endTime));
     }
@@ -79,7 +79,7 @@ void School::listCourses(){
   }
   else {
       for (int i = 0; i < courses.size(); i++){
-      cout << courses[i].getID() << "," << courses[i].getTitle() << endl;
+      cout << courses[i].getID() << "," << courses[i].getStartTime().getHour() << ":" << courses[i].getStartTime().getMin() << "," << courses[i].getEndTime().getHour() << ":" << courses[i].getEndTime().getMin() << "," << courses[i].getTitle() << courses[i].getStartTime().getHour() << endl;
       }
   }
 }
