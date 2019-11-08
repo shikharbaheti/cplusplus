@@ -125,7 +125,7 @@ void School::listCourses(){
     getline(ss, courseIdee, ',');
     string studentIdee;
     getline(ss, studentIdee);
-    Date attendanceTime(stoi(startHour), stoi(startMinute), stoi(startSecond));
+    Date attendanceTime(stoi(year), stoi(month), stoi(day), stoi(startHour), stoi(startMinute), stoi(startSecond));
     AttendanceRecord nextAttendance(courseIdee, studentIdee, attendanceTime);
 
     for (int i = 0; i < courses.size(); i++){
@@ -144,3 +144,14 @@ void School::listCourses(){
   }
 }
 
+void School::outputCourseAttendance(std::string course_id){
+  for (int i = 0; i < courses.size(); i++){
+    if (courses.at(i).getID() == course_id){
+        courses.at(i).outputAttendance();
+    }
+  }
+}
+
+void School::outputStudentAttendance(std::string student_id, std::string course_id){
+  cout << "please work" << endl;
+}

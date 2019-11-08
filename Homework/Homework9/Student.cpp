@@ -15,19 +15,22 @@ int Student::getCourseIndex(string course_id){
 }
 
 void Student::addCourse(std::string course_id){
-
+    bool duplicate = false;
     for (int i = 0; i < course_ids.size(); i++){
       if (course_ids.at(i) == course_id){
-        course_ids.push_back(course_id);
+        duplicate = true;
+        break;
       }
+    }
 
-    // if (getCourseIndex(course_id) == -1)
-    //     course_ids.push_back(course_id);
+    if(!duplicate){
+        course_ids.push_back(course_id);
     }
 }
 
 void Student::listCourses(){
+    cout << "Courses for " << get_id() << endl;
     for (int i = 0; i < course_ids.size(); i++){
-        cout << course_ids.at(i) << endl;
+        cout <<  course_ids.at(i) << endl;
     }
 }

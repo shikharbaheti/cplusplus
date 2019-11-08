@@ -15,7 +15,9 @@ Date::Date(int hour, int min, int sec)
 
 string Date::getDate() {
   stringstream ss;
-  ss << year << "-" << month << "-" << day << " ";
+  ss << month << "/";
+  ss << day << "/";
+  ss << year << " ";
   ss << setw(2) << setfill('0') << hour << ":"; 
   ss << setw(2) << setfill('0') << min << ":";
   ss << setw(2) << setfill('0') << sec;

@@ -12,3 +12,9 @@ void Course::addAttendanceRecord(AttendanceRecord ar){
         attendanceRecords.push_back(AttendanceRecord(ar.getCourseID(), ar.getStudentID(), ar.getDate()));
     }
 }
+
+void Course::outputAttendance(){
+    for (int i = 0; i < attendanceRecords.size(); i++){
+        cout << attendanceRecords.at(i).getDate().getDate() << "," << attendanceRecords.at(i).getCourseID() << "," << attendanceRecords.at(i).getStudentID() << endl;
+    }
+}
