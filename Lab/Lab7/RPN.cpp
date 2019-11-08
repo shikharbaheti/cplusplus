@@ -54,7 +54,5 @@ int main(){
     // for (int i = 0; i < s.length; i++){
     //     cout << s.A[i];
     // }
-
-    pop
     
 }
