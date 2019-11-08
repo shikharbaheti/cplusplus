@@ -153,5 +153,9 @@ void School::outputCourseAttendance(std::string course_id){
 }
 
 void School::outputStudentAttendance(std::string student_id, std::string course_id){
-  cout << "please work" << endl;
+  for (int i = 0; i < courses.size(); i++){
+    if (courses.at(i).getID() == course_id){
+        courses.at(i).outputAttendance(student_id);
+    }
+  }
 }
