@@ -39,6 +39,15 @@ void School::listStudents(){
   }
 }
 
+int School::getCourseIndex(string course_id){
+  for (int i = 0; i < courses.size(); i++){
+      if (courses.at(i).getID() == course_id){
+        return i;
+      }
+  }
+  return -1;
+}
+
 void School::addCourses(string filename) {
   ifstream ifs(filename);
   if (!ifs.is_open()) {
@@ -92,7 +101,6 @@ void School::listCourses(){
     cout << "Unable to open file: " << filename << endl;
     return;
   }
-  while (!ifs.eof()) {
     while (!ifs.eof()) {
     string line;
     getline(ifs, line);
@@ -109,15 +117,29 @@ void School::listCourses(){
     getline(ss, day, ' ');
     string startHour;
     getline(ss, startHour, ':');
-    string endMinute;
-    getline(ss, endMinute, ',');
-    string title;
-    getline(ss, title);
-    Date startTime(stoi(startHour), stoi(startMinute), 0);
-    Date endTime(stoi(endHour), stoi(endMinute), 0);
-      if (!ss.fail()) {
-        courses.push_back(Course(ID, title, startTime, endTime));
+    string startMinute;
+    getline(ss, startMinute, ':');
+    string startSecond;
+    getline(ss, startSecond, ',');
+    string courseIdee;
+    getline(ss, courseIdee, ',');
+    string studentIdee;
+    getline(ss, studentIdee);
+    Date attendanceTime(stoi(startHour), stoi(startMinute), stoi(startSecond));
+    AttendanceRecord nextAttendance(courseIdee, studentIdee, attendanceTime);
+
+    for (int i = 0; i < courses.size(); i++){
+      if (courses.at(i).getID() == courseIdee){
+        courses.at(i).addAttendanceRecord(nextAttendance);
       }
+  }
+    // cout << year << "-" << month << "-" << day << " " << startHour << ":" << startMinute << ":" << startSecond << "," << courseIdee << "," << studentIdee << endl;
+
+
+
+      // if (!ss.fail()) {
+      //   courses.push_back(Course(ID, title, startTime, endTime));
+      // }
     }
   }
 }

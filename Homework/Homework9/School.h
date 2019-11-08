@@ -17,6 +17,7 @@ public:
   void listCourses();
   void listStudents();
   void outputCourseAttendance(std::string course_id);
+  int getCourseIndex(std::string course_id);
   void outputStudentAttendance(std::string student_id, std::string course_id);
 };
 

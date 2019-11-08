@@ -35,12 +35,12 @@ void processLoadStudents(School& school) {
   school.addStudents(filename);
 }
 
-// void processLoadAttendance(School& school) {
-//   string filename;
-//   cout << "Please enter filename: ";
-//   cin >> filename;
-//   school.addAttendanceData(filename);
-// }
+void processLoadAttendance(School& school) {
+  string filename;
+  cout << "Please enter filename: ";
+  cin >> filename;
+  school.addAttendanceData(filename);
+}
 
 // void processOutputAttendanceStudent(School& school) {
 //   string studentID, courseID;
@@ -68,7 +68,7 @@ int main() {
     switch (tolower(choice)) {
       case '1': processLoadCourses(school); break;
       case '2': processLoadStudents(school); break;
-      // case '3': processLoadAttendance(school); break;
+      case '3': processLoadAttendance(school); break;
       // case '4': processOutputAttendanceStudent(school); break;
       // case '5': processOutputAttendanceCourse(school); break;
       case '6': school.listCourses(); break;
