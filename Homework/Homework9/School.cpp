@@ -153,9 +153,10 @@ void School::outputCourseAttendance(std::string course_id){
 }
 
 void School::outputStudentAttendance(std::string student_id, std::string course_id){
-  bool canFind = true;
+  bool canFind;
   for (int i = 0; i < courses.size(); i++){
     if (courses.at(i).getID() == course_id){
+        canFind = true;
         courses.at(i).outputAttendance(student_id);
     }
     else {
@@ -163,8 +164,8 @@ void School::outputStudentAttendance(std::string student_id, std::string course_
     }
   }
 
-  // if (!canFind){
-  //   cout << "No Records" << endl;
-  // }
+  if (canFind = false){
+    cout << "No Records" << endl;
+  }
 
 }
