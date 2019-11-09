@@ -163,8 +163,8 @@ void School::outputStudentAttendance(std::string student_id, std::string course_
     }
   }
 
-  if (!canFind){
-    cout << "No Records" << endl;
-  }
+  // if (!canFind){
+  //   cout << "No Records" << endl;
+  // }
 
 }
