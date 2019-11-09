@@ -18,3 +18,16 @@ void Course::outputAttendance(){
         cout << attendanceRecords.at(i).getDate().getDate() << "," << attendanceRecords.at(i).getCourseID() << "," << attendanceRecords.at(i).getStudentID() << endl;
     }
 }
+
+void Course::outputAttendance(std::string student_id){
+    if (attendanceRecords.size() == 0){
+        cout << "No Records" << endl;
+    }
+    else {
+        for (int i = 0; i < attendanceRecords.size(); i++){
+            if (attendanceRecords.at(i).getStudentID() == student_id){
+            cout << attendanceRecords.at(i).getDate().getDate() << "," << attendanceRecords.at(i).getCourseID() << "," << attendanceRecords.at(i).getStudentID() << endl;
+            }
+        }
+    }
+}

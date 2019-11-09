@@ -27,13 +27,3 @@ public:
 };
 
 #endif
-
-
-// class Triangle{
-//   int size;
-//   int area;
-//   Triangle(int number, int number2){
-//     size = number;
-//     area = number2;
-//   }
-// }
