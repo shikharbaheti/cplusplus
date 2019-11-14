@@ -239,7 +239,7 @@ int main() {
 
 	while (option != 9) {
 		if (option == 1) {
-			cout << "Enter filename:";
+			cout << "Enter filename:" << endl;
 			cin >> filename;
 			ifstream fileName;
 			fileName.open(filename);
