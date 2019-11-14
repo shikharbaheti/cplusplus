@@ -9,27 +9,6 @@ using namespace std;
 
 Image::Image() : image(nullptr), width(0), height(0), filename("") {}
 
-Image::Image(std::string filename) : image(nullptr), width(0), height(0) {
-  load(filename);
-}
-
-Image::Image(unsigned int width, unsigned int height) 
-      : image(nullptr), width(0), height(0), filename("") {
-  allocateImage(width, height);
-}
-
-void Image::allocateImage(unsigned int width, unsigned int height) {
-  clear();
-  if (width > 1 && height > 1) {
-    this->width = width;
-    this->height = height;
-    image = new Pixel*[width];
-    for (unsigned int col=0; col < width; ++col) {
-      image[col] = new Pixel[height];
-    }
-  }
-}
-
 Image::Image(const Image& oldOne){
   image = nullptr;
   width = 0;
@@ -60,26 +39,47 @@ Image& Image::operator=(const Image& oldOne){
   return *this;
 }
 
+
+Image::Image(std::string filename) : image(nullptr), width(0), height(0) {
+  load(filename);
+}
+
+Image::Image(unsigned int width, unsigned int height) 
+      : image(nullptr), width(0), height(0), filename("") {
+  allocateImage(width, height);
+}
+
+void Image::allocateImage(unsigned int width, unsigned int height) {
+  clear();
+  if (width > 1 && height > 1) {
+    this->width = width;
+    this->height = height;
+    image = new Pixel*[width];
+    for (unsigned int col=0; col < width; ++col) {
+      image[col] = new Pixel[height];
+    }
+  }
+}
+
 void Image::clear() {
   // beware, for clear to behave properly, with width and height must be zero if there //    is nothing on the heap, or the original values of width and height if there is //    memory on the heap
   // removes image from the heap to prevent memory leaks
   if (image == nullptr){
     width = 0;
     height = 0;
-    return;
-  } 
+  }
+  else if (image != nullptr) {  
   for (unsigned int i = 0; i < width; i++){
       if (image[i] != nullptr){
-        delete [] image[i];
+        delete image[i];
         image[i] = nullptr;
       }
-  }
-      if (image != nullptr){
   delete [] image;
   width = 0; height = 0;
   image = nullptr;
     }
- }
+  }
+}
 
 Pixel*& Image::operator[](unsigned int column) { return image[column]; }
 
