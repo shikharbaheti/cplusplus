@@ -245,7 +245,7 @@ int main() {
 			fileName.open(filename);
 			while (!fileName.eof()) {
 				if (fileName.fail()) {
-					cout << " File can't be open." << endl;
+					cout << " File can't be opened." << endl;
 					break;
 				}
 				string line;
