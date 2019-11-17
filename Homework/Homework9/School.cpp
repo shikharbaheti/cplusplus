@@ -158,9 +158,9 @@ void School::outputStudentAttendance(std::string student_id, std::string course_
     if (courses.at(i).getID() == course_id){
         courses.at(i).outputAttendance(student_id);
     }
-    else {
-      canFind = false;
-    }
+    // else {
+    //   cout << "No Records." << endl;
+    // }
   }
 
   // if (!canFind){
