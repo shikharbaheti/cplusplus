@@ -239,13 +239,13 @@ int main() {
 
 	while (option != 9) {
 		if (option == 1) {
-			cout << "Enter filename:";
+			cout << "Enter filename:" << endl;
 			cin >> filename;
 			ifstream fileName;
 			fileName.open(filename);
 			while (!fileName.eof()) {
 				if (fileName.fail()) {
-					cout << " File can't be open." << endl;
+					cout << " File can't be opened." << endl;
 					break;
 				}
 				string line;
