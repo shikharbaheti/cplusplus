@@ -28,14 +28,14 @@ void Course::outputAttendance(std::string student_id){
         for (int i = 0; i < attendanceRecords.size(); i++){
             if (attendanceRecords.at(i).getStudentID() == student_id){
                 reallyCanFind = true;
-            cout << attendanceRecords.at(i).getDate().getDate() << "," << attendanceRecords.at(i).getCourseID() << "," << attendanceRecords.at(i).getStudentID() << endl;
+                cout << attendanceRecords.at(i).getDate().getDate() << "," << attendanceRecords.at(i).getCourseID() << "," << attendanceRecords.at(i).getStudentID() << endl;
             }
             else {
-                reallyCanFind = false;
+                cout << "No Records in courses." << endl;
             }
         }
         if (reallyCanFind = false){
-            cout << "No Records" << endl;
+            cout << "No Records in courses." << endl;
         }
     }
 }

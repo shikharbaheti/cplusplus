@@ -21,17 +21,17 @@ int plan[daysInAYear];
 // int startDate;
 
 
-    cout << "Please enter ngames and duration: " << endl;
+    cout << "Please enter ngames and duration: ";
     cin >> ngames >> duration;
     if (ngames < 0 || ngames >=200 || duration < 0 || duration >= 365){
         cout << "Invalid input.";
         return 0;
     }
-        cout << "Please enter name of file with titles: " << endl;
+        cout << "Please enter name of file with titles: ";
         cin >> titlesFile;
-        cout << "Please enter name of file with preferences: " << endl;
+        cout << "Please enter name of file with preferences: ";
         cin >> preferencesFile;
-        cout << "Please enter name of file with plan: " << endl;
+        cout << "Please enter name of file with plan: ";
         cin >> planFile;
         if (readGameTitles(titlesFile, ngames, gameTitles) == -1 || readPrefs(preferencesFile, ngames, prefs) == -1 || readPlan(planFile, ngames, plan) == -1) {
             cout << "Invalid file.";
