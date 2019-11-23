@@ -10,15 +10,14 @@ class LinkedList {
     struct Node {
         T data;
         Node* next;
-        
-        Node(T data) : data(data), next(nullptr) {}
+        Node(T data)  : data(data), next(nullptr) {}
     };
 
     Node* head;
     Node* tail;
     unsigned int size;
     
-    public:
+    public: 
     LinkedList();
     LinkedList(const LinkedList&);
     ~LinkedList();
@@ -26,6 +25,7 @@ class LinkedList {
     void append(const LinkedList&);
     void clear();
     T& front() const;
+    T& back() const;
     void push_back(const T&);
     void push_front(const T&);
     unsigned int length() const;
@@ -58,14 +58,7 @@ LinkedList<T>::LinkedList() : head(nullptr), tail(nullptr), size(0) {}
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList<T>& other) : head(nullptr), tail(nullptr), size(0) {
     append(other);
-    // check if other is empty, if yes don't do anything
-
-    // allocate memory for head and copy value of other's head
-    this->head = new Node<T>(other.head->data);
-
-    // loop through other, and create new nodes and store them in this..
 }
-
 
 template <typename T>
 LinkedList<T>::~LinkedList() {
@@ -100,6 +93,14 @@ T& LinkedList<T>::front() const {
         throw std::out_of_range("empty list");
     }
     return head->data;
+}
+
+template <typename T>
+T& LinkedList<T>::back() const {
+    if (size == 0) {
+        throw std::out_of_range("empty list");
+    }
+    return tail->data;
 }
 
 template <typename T>
