@@ -16,9 +16,7 @@ class Stack {
     void push(const T&);
     
     friend std::ostream& operator<<(std::ostream& os, const Stack& stack) {
-        for (unsigned int i = 0; i < stack.list.length(); i++){
-            os << stack.list.node->data << "-->"; 
-        }
+        os << stack.list;
         return os;
     }
 };
